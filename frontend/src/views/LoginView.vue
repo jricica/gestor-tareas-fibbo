@@ -7,6 +7,11 @@
       <input v-model="password" type="password" placeholder="Contraseña" />
       <button type="submit">Entrar</button>
     </form>
+
+    <p style="margin-top: 1rem;">
+      ¿No tienes cuenta?
+      <router-link to="/signup">Regístrate aquí</router-link>
+    </p>
   </div>
 </template>
 
@@ -26,7 +31,7 @@ const login = async () => {
       password: password.value,
     });
 
-    console.log('Login response:', response.data); 
+    console.log('Login response:', response.data);
 
     localStorage.setItem('access', response.data.access);
     localStorage.setItem('refresh', response.data.refresh);
@@ -37,3 +42,18 @@ const login = async () => {
   }
 };
 </script>
+
+<style scoped>
+.login {
+  max-width: 400px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+</style>

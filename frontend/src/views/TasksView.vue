@@ -59,14 +59,15 @@ export default {
       }
 
       try {
+        console.log('Usando token:', token);
         const res = await api.get('/tasks/');
         tasks.value = res.data;
       } catch (err) {
-        console.error('Error al obtener tareas', err);
+        console.error('Error al obtener tareas:', err.response?.data || err.message);
         if (err.response?.status === 401) {
-          localStorage.removeItem('access');
-          localStorage.removeItem('refresh');
-          router.push('/login');
+          logout();
+        } else if (err.response?.status === 500) {
+          alert('Error interno del servidor al cargar tareas.');
         }
       }
     };
@@ -90,7 +91,8 @@ export default {
         await fetchTasks();
         clearForm();
       } catch (err) {
-        console.error('Error al guardar tarea', err);
+        console.error('Error al guardar tarea:', err.response?.data || err.message);
+        if (err.response?.status === 401) logout();
       }
     };
 
@@ -99,7 +101,8 @@ export default {
         await api.delete(`/tasks/${id}/`);
         await fetchTasks();
       } catch (err) {
-        console.error('Error al eliminar tarea', err);
+        console.error('Error al eliminar tarea:', err.response?.data || err.message);
+        if (err.response?.status === 401) logout();
       }
     };
 
