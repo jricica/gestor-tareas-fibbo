@@ -25,10 +25,14 @@ const login = async () => {
       username: username.value,
       password: password.value,
     });
+
+    console.log('Login response:', response.data); 
+
     localStorage.setItem('access', response.data.access);
     localStorage.setItem('refresh', response.data.refresh);
     router.push('/tasks');
   } catch (error) {
+    console.error('Login error:', error.response?.data || error);
     alert('Credenciales inválidas');
   }
 };
