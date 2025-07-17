@@ -1,16 +1,12 @@
-# tasks/serializers.py
-
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import Task
 
-
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields = ['id', 'title', 'description', 'status', 'due_date', 'priority', 'user']
-        read_only_fields = ['user']
-
+        fields = '__all__'
+        read_only_fields = ['created_by']
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
