@@ -25,7 +25,7 @@ const router = createRouter({
   routes
 });
 
-// ⛔ Protege rutas privadas
+
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('access');
   
