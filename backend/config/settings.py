@@ -63,7 +63,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fibbo_db',
         'USER': 'postgres',
-        'PASSWORD': 'Xapkib/Mriya2004',
+        'PASSWORD': 'your_password_here',  # Cambia esto por tu contraseña real
         'HOST': 'localhost',
         'PORT': '5432',
     }
