@@ -20,7 +20,7 @@ class TaskViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         task = serializer.save(created_by=self.request.user)
-        # Evitar que se comparta consigo mismo
+        
         if task.shared_with.filter(id=self.request.user.id).exists():
             task.shared_with.remove(self.request.user)
 
